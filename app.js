@@ -17,7 +17,7 @@ app.post('/persons', async (req, res) => {
 	if (!id || !LastName) {
 		return res.status(400).json({ error: 'Missing required fields: id and LastName' });
 	}
-	const text = 'INSERT INTO persons(id, LastName, FirstName, Address, City) VALUES($1,$2,$3,$4,$5) RETURNING *';
+	const text = 'INSERT INTO persons(id, "LastName", "FirstName", "Address", "City") VALUES($1,$2,$3,$4,$5) RETURNING *';
 	const values = [id, LastName, FirstName || null, Address || null, City || null];
 	try {
 		const result = await pool.query(text, values);
